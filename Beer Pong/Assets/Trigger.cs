@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallCheck : MonoBehaviour
+public class Trigger : MonoBehaviour
 {
-    public GameObject thisCup;
+    public int ballsMissed;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -22,12 +22,9 @@ public class BallCheck : MonoBehaviour
     {
         if (other.tag == "ball")
         {
-            Debug.Log("in!");
-            thisCup.SetActive(false);
+            ballsMissed += 1;
+            Debug.Log("balls missed: " + ballsMissed);
             Destroy(other.gameObject);
         }
     }
-
-
-
 }
