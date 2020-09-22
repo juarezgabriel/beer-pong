@@ -1721,7 +1721,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisCup: {fileID: 4123936}
-  trigger: {fileID: 1093773812}
 --- !u!43 &44854651
 Mesh:
   m_ObjectHideFlags: 0
@@ -3812,7 +3811,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisCup: {fileID: 363451347}
-  trigger: {fileID: 1093773812}
 --- !u!43 &450142827
 Mesh:
   m_ObjectHideFlags: 0
@@ -5575,7 +5573,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisCup: {fileID: 596239993}
-  trigger: {fileID: 1093773812}
 --- !u!1 &639000362
 GameObject:
   m_ObjectHideFlags: 0
@@ -7514,7 +7511,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisCup: {fileID: 673650586}
-  trigger: {fileID: 1093773812}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -9205,7 +9201,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisCup: {fileID: 738092270}
-  trigger: {fileID: 1093773812}
 --- !u!43 &779608399
 Mesh:
   m_ObjectHideFlags: 0
@@ -10968,7 +10963,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisCup: {fileID: 861197205}
-  trigger: {fileID: 1093773812}
 --- !u!1 &936019966
 GameObject:
   m_ObjectHideFlags: 0
@@ -12567,7 +12561,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisCup: {fileID: 936019966}
-  trigger: {fileID: 1093773812}
 --- !u!1 &962945057
 GameObject:
   m_ObjectHideFlags: 0
@@ -14166,7 +14159,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisCup: {fileID: 962945057}
-  trigger: {fileID: 1093773812}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -14246,7 +14238,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.22927685, y: 0, z: 0, w: 0.97336125}
-  m_LocalPosition: {x: 1, y: 7.26, z: -9.78}
+  m_LocalPosition: {x: -0.47, y: 11.06, z: -7.89}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -15876,7 +15868,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisCup: {fileID: 988556123}
-  trigger: {fileID: 1093773812}
 --- !u!1 &1069227325
 GameObject:
   m_ObjectHideFlags: 0
@@ -17475,7 +17466,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisCup: {fileID: 1069227325}
-  trigger: {fileID: 1093773812}
 --- !u!1 &1093773811
 GameObject:
   m_ObjectHideFlags: 0
@@ -17508,9 +17498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1990e27b6770648fba503ef2a11f0616, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballsMissed: 0
   blurMaterial: {fileID: 2100000, guid: ee1bb2b0510ee4e92a602a66198c0d0d, type: 2}
-  blurScale: 0
 --- !u!65 &1093773813
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17585,7 +17573,7 @@ Transform:
   m_LocalScale: {x: 50, y: 1, z: 75}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1100351746
 Mesh:
@@ -19558,7 +19546,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisCup: {fileID: 1221558145}
-  trigger: {fileID: 1093773812}
 --- !u!1 &1267626974
 GameObject:
   m_ObjectHideFlags: 0
@@ -19733,7 +19720,7 @@ RectTransform:
   m_Children:
   - {fileID: 1590375347}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -19968,7 +19955,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1412799824
 GameObject:
@@ -21568,7 +21555,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisCup: {fileID: 1412799824}
-  trigger: {fileID: 1093773812}
 --- !u!1 &1550587383
 GameObject:
   m_ObjectHideFlags: 0
@@ -23167,7 +23153,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisCup: {fileID: 1550587383}
-  trigger: {fileID: 1093773812}
 --- !u!1 &1590375346
 GameObject:
   m_ObjectHideFlags: 0
@@ -24841,7 +24826,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisCup: {fileID: 1624750315}
-  trigger: {fileID: 1093773812}
 --- !u!43 &1628467990
 Mesh:
   m_ObjectHideFlags: 0
@@ -27424,4 +27408,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisCup: {fileID: 2104994063}
-  trigger: {fileID: 1093773812}
