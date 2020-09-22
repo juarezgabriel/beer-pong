@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class BallMove : MonoBehaviour
+
+public class BallCheck : MonoBehaviour
 {
     public GameObject thisCup;
+    public Trigger trigger;
 
     // Start is called before the first frame update
     void Start()
@@ -14,7 +16,7 @@ public class BallMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -22,8 +24,12 @@ public class BallMove : MonoBehaviour
         if (other.tag == "ball")
         {
             Debug.Log("in!");
+            trigger.blurScale -= .5f;
             thisCup.SetActive(false);
+            Destroy(other.gameObject);
         }
     }
+
+
 
 }
