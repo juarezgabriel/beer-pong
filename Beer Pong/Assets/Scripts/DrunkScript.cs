@@ -6,11 +6,13 @@ public class DrunkScript : MonoBehaviour
 {
     private static int s_CurrentDrunknessFactor = 0;
 
-    private const float MAX_POSITIVE_Z_ROTATION = 15.0f;
-    private const float MAX_NEGATIVE_Z_ROTATION = 345.0f;
+    private const float MAX_POSITIVE_Z_ROTATION = 10.0f;
+    private const float MAX_NEGATIVE_Z_ROTATION = 350.0f;
     private const float ANGULAR_ACCELERATION_INCREMENT_PER_MISSED_SHOT = 0.1f;
-    private const float ANGULAR_ACCELERATION_SCALAR = 1.0f;
-    private const int MISSED_BALLS_FACTOR = 5;
+    private const float ANGULAR_VELOCITY_SCALAR = 50.0f;
+    private const float BASE_ANGULAR_VELOCITY = 0.5f;
+    private const int MAX_DRUNKNESS_FACTOR = 20;
+    private const int BALLS_MADE_TO_MISSED_DRUNK_RATIO = 4;
 
     private float m_LastNonZeroAngularVelocity = 0.0f;
     private float m_AngularVelocity = 0.0f;
@@ -23,20 +25,27 @@ public class DrunkScript : MonoBehaviour
 
     void Update()
     {
-        s_CurrentDrunknessFactor += (-(BallCheck.s_BallsMade * 2) + Trigger.s_BallsMissed) * MISSED_BALLS_FACTOR;
+        UpdateDrunknessFactor();
+        UpdateAngularVelocity();
+        ApplyRotationalConstraints();
+    }
 
-        if(s_CurrentDrunknessFactor < 0)
+    private void UpdateDrunknessFactor()
+    {
+        s_CurrentDrunknessFactor += (-(BallCheck.s_BallsMade * BALLS_MADE_TO_MISSED_DRUNK_RATIO) + Trigger.s_BallsMissed);
+
+        if (s_CurrentDrunknessFactor < 0)
         {
             s_CurrentDrunknessFactor = 0;
+        } else if(s_CurrentDrunknessFactor > MAX_DRUNKNESS_FACTOR)
+        {
+            s_CurrentDrunknessFactor = MAX_DRUNKNESS_FACTOR;
         }
 
         BallCheck.s_BallsMade = 0; Trigger.s_BallsMissed = 0;
-
-        ApplyAcceleration();
-        ApplyConstraints();
     }
 
-    private void ApplyAcceleration()
+    private void UpdateAngularVelocity()
     {
         Vector3 eulerAngles = gameObject.transform.eulerAngles;
 
@@ -47,35 +56,20 @@ public class DrunkScript : MonoBehaviour
             zValue = MAX_NEGATIVE_Z_ROTATION - zValue;
         }
 
-        float angularAcceleration = (Mathf.Abs(zValue) / MAX_POSITIVE_Z_ROTATION) * ANGULAR_ACCELERATION_SCALAR;
-        angularAcceleration += ANGULAR_ACCELERATION_INCREMENT_PER_MISSED_SHOT * s_CurrentDrunknessFactor;
+        m_AngularVelocity = (BASE_ANGULAR_VELOCITY * s_CurrentDrunknessFactor) + ((Mathf.Abs(zValue) / MAX_POSITIVE_Z_ROTATION) * ANGULAR_VELOCITY_SCALAR * Time.deltaTime);
 
-        if (eulerAngles.z >= MAX_NEGATIVE_Z_ROTATION || eulerAngles.z <= 2.0f && m_IsSwayingRight)
+        if(m_IsSwayingRight)
         {
-            angularAcceleration *= -1.0f;
+            m_AngularVelocity *= -1.0f;
         }
-
-        m_AngularVelocity += angularAcceleration * Time.deltaTime;
-
-        if (Mathf.Abs(m_AngularVelocity) <= 0.05f)
-        {
-            eulerAngles.z += m_LastNonZeroAngularVelocity * Time.deltaTime;
-        } else
-        {
-            eulerAngles.z += m_AngularVelocity * Time.deltaTime;
-            m_LastNonZeroAngularVelocity = m_AngularVelocity;
-        }
-
-        if (Mathf.Abs(eulerAngles.z) <= 0.1f)
-        {
-            m_AngularVelocity /= 1.2f;
-        }
+    
+        eulerAngles.z += m_AngularVelocity * Time.deltaTime;
 
         gameObject.transform.eulerAngles = eulerAngles;
 
     }
 
-    private void ApplyConstraints()
+    private void ApplyRotationalConstraints()
     {
         Vector3 currentEulerAngle = gameObject.transform.eulerAngles;
 

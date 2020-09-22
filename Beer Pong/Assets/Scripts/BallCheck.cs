@@ -14,11 +14,13 @@ public class BallCheck : MonoBehaviour
         {
             Debug.Log("in!");
 
-            if(Trigger.s_BlurScale <= 0.5f) {
+            if(Trigger.s_BlurScale <= 1.5f) {
                 Trigger.s_BlurScale = 0.0f;
             } else {
-                Trigger.s_BlurScale -= 0.5f;
+                Trigger.s_BlurScale -= 1.5f;
             }
+
+            s_BallsMade++;
 
             thisCup.SetActive(false);
             Destroy(other.gameObject);
