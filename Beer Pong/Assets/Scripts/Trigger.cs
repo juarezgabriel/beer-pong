@@ -6,14 +6,15 @@ using UnityEngine.UI;
 public class Trigger : MonoBehaviour
 {
     public static int s_BallsMissed = 0;
+    
+    [SerializeField]
+    Material blurMaterial;
+
     public static float s_BlurScale = 0.0f;
 
-    [SerializeField] 
-    private Material blurMaterial;
-    
+    // Start is called before the first frame update
     void Start()
     {
-        s_BlurScale = 0;
         blurMaterial.SetFloat("_Size", s_BlurScale);
     }
 
