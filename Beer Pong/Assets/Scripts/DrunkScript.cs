@@ -4,28 +4,34 @@ using UnityEngine;
 
 public class DrunkScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public static int s_NumMissedBalls = 100;
+    private static int s_CurrentDrunknessFactor = 0;
 
     private const float MAX_POSITIVE_Z_ROTATION = 15.0f;
     private const float MAX_NEGATIVE_Z_ROTATION = 345.0f;
     private const float ANGULAR_ACCELERATION_INCREMENT_PER_MISSED_SHOT = 0.1f;
     private const float ANGULAR_ACCELERATION_SCALAR = 1.0f;
+    private const int MISSED_BALLS_FACTOR = 5;
 
     private float m_LastNonZeroAngularVelocity = 0.0f;
     private float m_AngularVelocity = 0.0f;
-    private float m_LastAngularAcceleration = 0.0f;
     private bool m_IsSwayingRight = false;
-    private bool m_SetLastAngularAcceleration = false;
 
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
+        s_CurrentDrunknessFactor += (-(BallCheck.s_BallsMade * 2) + Trigger.s_BallsMissed) * MISSED_BALLS_FACTOR;
+
+        if(s_CurrentDrunknessFactor < 0)
+        {
+            s_CurrentDrunknessFactor = 0;
+        }
+
+        BallCheck.s_BallsMade = 0; Trigger.s_BallsMissed = 0;
+
         ApplyAcceleration();
         ApplyConstraints();
     }
@@ -42,7 +48,7 @@ public class DrunkScript : MonoBehaviour
         }
 
         float angularAcceleration = (Mathf.Abs(zValue) / MAX_POSITIVE_Z_ROTATION) * ANGULAR_ACCELERATION_SCALAR;
-        angularAcceleration += ANGULAR_ACCELERATION_INCREMENT_PER_MISSED_SHOT * s_NumMissedBalls;
+        angularAcceleration += ANGULAR_ACCELERATION_INCREMENT_PER_MISSED_SHOT * s_CurrentDrunknessFactor;
 
         if (eulerAngles.z >= MAX_NEGATIVE_Z_ROTATION || eulerAngles.z <= 2.0f && m_IsSwayingRight)
         {
