@@ -6,7 +6,14 @@ public class BallCheck : MonoBehaviour
 {
     public static int s_BallsMade = 0;
 
-    [SerializeField] private GameObject thisCup;
+    [SerializeField] 
+    private AudioSource m_OnMakeSound;
+
+    [SerializeField]
+    private AudioSource m_OnWinSound;
+
+    [SerializeField] 
+    private GameObject thisCup;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -21,6 +28,8 @@ public class BallCheck : MonoBehaviour
             }
 
             s_BallsMade++;
+
+            m_OnMakeSound.PlayOneShot(m_OnMakeSound.clip);
 
             thisCup.SetActive(false);
             Destroy(other.gameObject);

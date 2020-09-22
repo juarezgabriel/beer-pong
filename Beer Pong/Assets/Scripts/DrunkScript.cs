@@ -18,6 +18,9 @@ public class DrunkScript : MonoBehaviour
     private float m_AngularVelocity = 0.0f;
     private bool m_IsSwayingRight = false;
 
+    [SerializeField]
+    private AudioSource m_OnLoseSound;
+
     void Start()
     {
         
@@ -39,6 +42,8 @@ public class DrunkScript : MonoBehaviour
             s_CurrentDrunknessFactor = 0;
         } else if(s_CurrentDrunknessFactor > MAX_DRUNKNESS_FACTOR)
         {
+            // TODO: Handle lose case here
+            m_OnLoseSound.PlayOneShot(m_OnLoseSound.clip);
             s_CurrentDrunknessFactor = MAX_DRUNKNESS_FACTOR;
         }
 
