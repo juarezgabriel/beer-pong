@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DrunkScript : MonoBehaviour
 {
@@ -21,9 +22,15 @@ public class DrunkScript : MonoBehaviour
     [SerializeField]
     private AudioSource m_OnLoseSound;
 
+    public GameObject ambientSound;
+    public RawImage wasted;
+
+    public PointAndShoot pointAndShoot;
+
     void Start()
     {
-        
+        wasted.enabled = false;
+        s_CurrentDrunknessFactor = 0;
     }
 
     void Update()
@@ -43,8 +50,11 @@ public class DrunkScript : MonoBehaviour
         } else if(s_CurrentDrunknessFactor > MAX_DRUNKNESS_FACTOR)
         {
             // TODO: Handle lose case here
+            ambientSound.GetComponent<AudioSource>().Stop();
+            wasted.enabled = true;
             m_OnLoseSound.PlayOneShot(m_OnLoseSound.clip);
             s_CurrentDrunknessFactor = MAX_DRUNKNESS_FACTOR;
+            pointAndShoot.enabled = false;
         }
 
         BallCheck.s_BallsMade = 0; Trigger.s_BallsMissed = 0;

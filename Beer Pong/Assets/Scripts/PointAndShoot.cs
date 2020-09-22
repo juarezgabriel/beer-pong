@@ -7,10 +7,17 @@ public class PointAndShoot : MonoBehaviour
     [SerializeField] private GameObject ballPrefab;
     [SerializeField] private float speed;
 
+    public int ballsMade;
+
+    //[SerializeField]
+    //private AudioSource m_OnWinSound;
+    //public GameObject ambientSound;
+
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        ballsMade = 0;
     }
 
     // Update is called once per frame

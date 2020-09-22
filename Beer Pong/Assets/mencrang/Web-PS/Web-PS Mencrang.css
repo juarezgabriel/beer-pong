@@ -1,0 +1,9 @@
+/* Webfont: Mencranġ */@font-face {
+    font-family: 'Mencrang';
+    src: url('Mencrang.woff2') format('woff2'), /* Modern Browsers */
+         url('Mencrang.ttf') format('truetype'); /* Safari, Android, iOS */
+             font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+

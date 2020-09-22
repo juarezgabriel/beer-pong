@@ -22,6 +22,7 @@ public class Trigger : MonoBehaviour
     void Start()
     {
         blurMaterial.SetFloat("_Size", s_BlurScale);
+        s_BlurScale = 0;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -37,7 +38,6 @@ public class Trigger : MonoBehaviour
             s_BlurScale += .25f;
             blurMaterial.SetFloat("_Size", s_BlurScale);
             m_OnMissSound.PlayOneShot(m_OnMissSound.clip);
-            Debug.Log("balls missed: " + s_BallsMissed);
             Destroy(other.gameObject);
         }
     }

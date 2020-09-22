@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BallCheck : MonoBehaviour
 {
@@ -15,11 +16,22 @@ public class BallCheck : MonoBehaviour
     [SerializeField] 
     private GameObject thisCup;
 
+    public GameObject ambientSound;
+
+    public PointAndShoot pointAndShoot;
+
+    public Text youWinText;
+
+    private void Start()
+    {
+        youWinText.enabled = false;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "ball")
         {
-            Debug.Log("in!");
+            pointAndShoot.ballsMade++;
 
             if(Trigger.s_BlurScale <= 2.5f) {
                 Trigger.s_BlurScale = 0.0f;
@@ -34,8 +46,16 @@ public class BallCheck : MonoBehaviour
             thisCup.SetActive(false);
             Destroy(other.gameObject);
         }
+
+        if (pointAndShoot.ballsMade == 15)
+        {
+            ambientSound.GetComponent<AudioSource>().Stop();
+            m_OnWinSound.PlayOneShot(m_OnWinSound.clip);
+            youWinText.enabled = true;
+            pointAndShoot.enabled = false;
+
+
+        }
+
     }
-
-
-
 }
